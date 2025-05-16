@@ -24,7 +24,7 @@
         <p>இனி ஒரு விதி செய்வோம் !</p>
               </header>
 
-        <nav>
+        <nav role="navigation">
           
           <ul type="none">
           <li><a href="index.html">முகப்பு|  Home</a></li>
@@ -58,14 +58,32 @@
 
 
             <script>
-    function speak(elementId) {
-      const text = document.getElementById(elementId).innerText;
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'en-US';
-      speechSynthesis.cancel(); // stop any current speech
-      speechSynthesis.speak(utterance);
+  let voices = [];
+
+  function loadVoices() {
+    voices = speechSynthesis.getVoices();
+  }
+
+  speechSynthesis.onvoiceschanged = loadVoices;
+
+  function speak(elementId) {
+    const text = document.getElementById(elementId).innerText;
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'ta-IN';
+
+    // Try to select a Tamil voice if available
+    const tamilVoice = voices.find(voice => voice.lang === 'ta-IN');
+    if (tamilVoice) {
+      utterance.voice = tamilVoice;
     }
-  </script>
+
+    speechSynthesis.cancel(); // Stop any current speech
+    speechSynthesis.speak(utterance);
+  }
+
+  // Load voices initially
+  loadVoices();
+</script>
 
 
       <img src="/braille.jpg" alt="Everest-D V5 cut-sheet fed Braille printer ">    
