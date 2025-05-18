@@ -90,50 +90,83 @@
     <a href="#top">Scroll to Top</a>
   </footer>
 <script>
-  // Text-to-speech setup (unchanged if you're keeping the speak buttons)
+  // Text-to-speech setup
   let voices = [];
+
   function loadVoices() {
     voices = speechSynthesis.getVoices();
   }
+
   speechSynthesis.onvoiceschanged = () => {
     loadVoices();
   };
 
-  function speak(elementId) {
-    const text = document.getElementById(elementId).innerText;
+  function speakText(text) {
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = 'ta-IN';
+
     const tamilVoice = voices.find(voice => voice.lang === 'ta-IN');
     if (tamilVoice) {
       utterance.voice = tamilVoice;
     }
+
     speechSynthesis.cancel();
     speechSynthesis.speak(utterance);
   }
 
-  // Visual greeting only, simplified
-  function getGreetingMessage() {
-    const now = new Date();
-    const hours = now.getHours();
-
-    let greeting = '';
-    if (hours < 12) {
-      greeting = 'காலை வணக்கம்';
-    } else if (hours < 16) {
-      greeting = 'மதிய வணக்கம்';
-    } else {
-      greeting = 'மாலை வணக்கம்';
-    }
-
-    return `${greeting}, நல்வரவு! இது ${hours} மணி.`;
+  function getTamilGreeting(hours) {
+    if (hours < 12) return 'காலை வணக்கம்';
+    if (hours < 16) return 'மதிய வணக்கம்';
+    return 'மாலை வணக்கம்';
   }
 
-  // Show the greeting once on page load
+  function updateTimeAndAnnounce(announce = false) {
+    const now = new Date();
+
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+
+    const greeting = getTamilGreeting(hours);
+
+    const dateString = now.toLocaleDateString('ta-IN', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+
+    const timeString = now.toLocaleTimeString('ta-IN', {
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+
+    const message = `${greeting}, இன்று ${dateString}, தற்போது ${timeString}`;
+
+    // Update visually
+    const box = document.getElementById('greeting-box');
+    box.innerText = message;
+
+    // Announce if needed
+    if (announce) {
+      speakText(message);
+    }
+  }
+
   window.onload = () => {
-    const greetingBox = document.getElementById('greeting-box');
-    greetingBox.innerText = getGreetingMessage();
+    loadVoices();
+    updateTimeAndAnnounce(true); // Speak once on page load
+
+    // Every minute, check if it's a new hour (minute === 0)
+    setInterval(() => {
+      const now = new Date();
+      const minutes = now.getMinutes();
+      if (minutes === 0) {
+        updateTimeAndAnnounce(true);
+      } else {
+        updateTimeAndAnnounce(false); // Only update visual
+      }
+    }, 60000); // Every 60 seconds
   };
 </script>
-
   </body>
 </html>
