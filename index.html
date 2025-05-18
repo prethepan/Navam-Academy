@@ -89,63 +89,51 @@
     <p>Vision Lost is not a Life Lost</p>
     <a href="#top">Scroll to Top</a>
   </footer>
+<script>
+  // Text-to-speech setup (unchanged if you're keeping the speak buttons)
+  let voices = [];
+  function loadVoices() {
+    voices = speechSynthesis.getVoices();
+  }
+  speechSynthesis.onvoiceschanged = () => {
+    loadVoices();
+  };
 
-  <script>
-    // Text-to-speech setup
-    let voices = [];
+  function speak(elementId) {
+    const text = document.getElementById(elementId).innerText;
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'ta-IN';
+    const tamilVoice = voices.find(voice => voice.lang === 'ta-IN');
+    if (tamilVoice) {
+      utterance.voice = tamilVoice;
+    }
+    speechSynthesis.cancel();
+    speechSynthesis.speak(utterance);
+  }
 
-    function loadVoices() {
-      voices = speechSynthesis.getVoices();
+  // Visual greeting only, simplified
+  function getGreetingMessage() {
+    const now = new Date();
+    const hours = now.getHours();
+
+    let greeting = '';
+    if (hours < 12) {
+      greeting = 'காலை வணக்கம்';
+    } else if (hours < 16) {
+      greeting = 'மதிய வணக்கம்';
+    } else {
+      greeting = 'மாலை வணக்கம்';
     }
 
-    speechSynthesis.onvoiceschanged = () => {
-      loadVoices();
-    };
+    return `${greeting}, நல்வரவு! இது ${hours} மணி.`;
+  }
 
-    function speak(elementId) {
-      const text = document.getElementById(elementId).innerText;
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'ta-IN';
+  // Show the greeting once on page load
+  window.onload = () => {
+    const greetingBox = document.getElementById('greeting-box');
+    greetingBox.innerText = getGreetingMessage();
+  };
+</script>
 
-      const tamilVoice = voices.find(voice => voice.lang === 'ta-IN');
-      if (tamilVoice) {
-        utterance.voice = tamilVoice;
-      }
-
-      speechSynthesis.cancel();
-      speechSynthesis.speak(utterance);
-    }
-
-    // Greeting setup
-    function getGreetingMessage() {
-      const now = new Date();
-      const hours = now.getHours();
-      const dateString = now.toLocaleDateString('ta-IN', {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-      });
-      const timeString = now.toLocaleTimeString('ta-IN', {
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
-      });
-
-      let greeting = '';
-      if (hours < 12) {
-        greeting = 'காலை வணக்கம்';
-      } else if (hours < 16) {
-        greeting = 'மதிய வணக்கம்';
-      } else {
-        greeting = 'மாலை வணக்கம்';
-      }
-
-      return `${greeting}, நல்வரவு! இன்று ${dateString}, தற்போதைய நேரம் ${timeString}.`;
-    }
-
-    }
-  
-  </script>
-</body>
+  </body>
 </html>
