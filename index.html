@@ -41,8 +41,7 @@
   <div id="greeting-box" class="greeting-box" role="status" aria-live="polite" tabindex="0">
   <!-- Date and time will be shown and read here -->
   </div>
-  <p> முள்ளிவாய்க்கால் 16 ஆம் ஆண்டு நாளில் எமது இனத்திற்காக தமது உயிரை அர்ப்பணித்த அனைத்து உயிர்களையும் நினைவுகூறும் அதேவேளை, கசடற்ற கல்வி மூலம் எமது இன, மொழி வளர்ச்சிக்காக உழைத்திடுவோம். </p>
-
+  
   </header>
 
   <nav role="navigation">
@@ -92,7 +91,6 @@
     <a href="#top">Scroll to Top</a>
   </footer>
 <script>
-  // Text-to-speech setup
   let voices = [];
 
   function loadVoices() {
@@ -144,11 +142,11 @@
 
     const message = `${greeting}, இன்று ${dateString}, தற்போது ${timeString}`;
 
-    // Update visually
+    // Display only
     const box = document.getElementById('greeting-box');
     box.innerText = message;
 
-    // Announce if needed
+    // Announce if it's a new hour
     if (announce) {
       speakText(message);
     }
@@ -156,19 +154,18 @@
 
   window.onload = () => {
     loadVoices();
-    updateTimeAndAnnounce(true); // Speak once on page load
+    updateTimeAndAnnounce(); // Just display on load, no speech
 
-    // Every minute, check if it's a new hour (minute === 0)
     setInterval(() => {
       const now = new Date();
       const minutes = now.getMinutes();
-      if (minutes === 0) {
-        updateTimeAndAnnounce(true);
-      } else {
-        updateTimeAndAnnounce(false); // Only update visual
-      }
-    }, 60000); // Every 60 seconds
+      updateTimeAndAnnounce(minutes === 0); // Speak only when minutes === 0 (new hour)
+    }, 60000);
   };
+function speak(id) {
+  const text = document.getElementById(id).innerText;
+  speakText(text);
+}
 </script>
-  </body>
+</body>
 </html>
