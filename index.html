@@ -11,6 +11,7 @@
       font-size: 1rem;
       cursor: pointer;
     }
+
     .greeting-box {
       border: 2px solid #444;
       padding: 1rem;
@@ -19,12 +20,13 @@
       border-radius: 8px;
       font-size: 1.1rem;
     }
+
+    .greeting-box:focus {
+      outline: 3px solid #005fcc;
+    }
+
     header img {
       max-height: 80px;
-    }
-    #language-selector {
-      margin: 1rem;
-      font-size: 1rem;
     }
   </style>
 </head>
@@ -34,39 +36,32 @@
     <a href="index.html">
       <img src="logo.png" alt="நவம் அறிவுக்கூட இலச்சினை" />
     </a>
-    <p id="site-name">நவம் அறிவுக்கூடம்</p>
-    <p id="tagline">மனிதனது இருப்பை விட அவனது செயற்பாடே வரலாற்றுச் சக்கரத்தை சுழற்ற உதவுகிறது!</p>
-
-    <!-- Language Selector -->
-    <label for="language-selector">🌐 Language:</label>
-    <select id="language-selector" onchange="changeLanguage(this.value)">
-      <option value="ta">தமிழ்</option>
-      <option value="en">English</option>
-      <option value="si">සිංහල</option>
-    </select>
-
-    <div id="greeting-box" class="greeting-box" role="status" aria-live="polite" tabindex="0"></div>
+    <p>நவம் அறிவுக்கூடம்</p>
+    <p>மனிதனது இருப்பை விட அவனது செயற்பாடே வரலாற்றுச் சக்கரத்தை சுழற்ற உதவுகிறது!</p>
+  <div id="greeting-box" class="greeting-box" role="status" aria-live="polite" tabindex="0">
+  <!-- Date and time will be shown and read here -->
+  </div>
+  
   </header>
 
   <nav role="navigation">
     <ul type="none">
-      <li><a id="nav-home" href="index.html">முகப்பு | Home</a></li>
-      <li><a id="nav-gk" href="gk.html">தகவல் களஞ்சியம் | Information Store</a></li>
-      <li><a id="nav-eng" href="english.html">ஆங்கிலம் | English</a></li>
-      <li><a id="nav-read" href="reading.html">வாசிப்பு | Reading</a></li>
-      <li><a id="nav-tech" href="technology.html">தொழினுட்ப செய்திகள் | Technology News</a></li>
-      <li><a id="nav-contact" href="contactme.html">தொடர்பு கொள்க | Contact Us</a></li>
+      <li><a href="index.html">முகப்பு | Home</a></li>
+      <li><a href="gk.html">தகவல் களஞ்சியம் | Information Store</a></li>
+      <li><a href="english.html">ஆங்கிலம் | English</a></li>
+           <li><a href="reading.html"> வாசிப்பு |  Reading</a></li>
+      <li><a href="technology.html">தொழினுட்ப செய்திகள் | Technology News</a></li>
+      <li><a href="contactme.html">தொடர்பு கொள்க | Contact Us</a></li>
     </ul>
   </nav>
 
   <main id="main">
-    <h1 id="welcome-heading">அன்புடன் நவம் அறிவுக்கூடத்தின் முகப்பு பகுதிக்கு வரவேற்கின்றோம்</h1>
+    <h1>அன்புடன் நவம் அறிவுக்கூடத்தின் முகப்பு பகுதிக்கு வரவேற்கின்றோம்</h1>
 
     <div role="region" aria-labelledby="block1-title" tabindex="0">
       <h2 id="block1-title">அறிமுகம்</h2>
       <p id="block1-text">
-        'நவம்' என்ற ஆளுமை தனது அங்கம் ஒன்றை இழந்த போதிலும் இறுதி வரை தளராது தனது இலட்சியத்தில் உறுதியாக நின்று 15.05.1989 அன்று தனது உயிரை தமிழ் இனத்திற்காக அர்ப்பணித்தார்...
-      </p>
+        'நவம்' என்ற ஆளுமை தனது அங்கம் ஒன்றை இழந்த போதிலும் இறுதி வரை தளராது தனது இலட்சியத்தில் உறுதியாக நின்று 15.05.1989 அன்று தனது உயிரை தமிழ் இனத்திற்காக அர்ப்பணித்தார். அவரின் நினைவாக மலர்ந்ததே “நவம் அறிவுக் கூடம்” என்னும் கல்விக்கூடம். அங்கு கற்றதன் பயனே இந்த இணையத்தள வடிவமைப்புக்கு கைகொடுத்தது.</p>
       <button class="speak-button" onclick="speak('block1-text')" aria-label="Read Introduction aloud">🔊 கேட்க</button>
     </div>
 
@@ -75,7 +70,8 @@
     <div role="region" aria-labelledby="block2-title" tabindex="0">
       <h2 id="block2-title">நோக்கம்</h2>
       <p id="block2-text">
-        பொது அறிவு, ஆங்கிலம் மற்றும் தகவல் தொழினுட்பம் சார்ந்த விடயங்கள் மற்றும் வாசிப்பு திறன் முதலானவற்றை மேம்படுத்தும் நோக்குடன் இவ் இணையத்தளமானது வடிவமைக்கப்பட்டுள்ளது.
+        பொது அறிவு, ஆங்கிலம் மற்றும் தகவல் தொழினுட்பம் சார்ந்த விடயங்கள் மற்றும் வாசிப்பு திறன் முதலானவற்றை மேம்படுத்தும்
+        நோக்குடன் இவ் இணையத்தளமானது வடிவமைக்கப்பட்டுள்ளது.
       </p>
       <button class="speak-button" onclick="speak('block2-text')" aria-label="நோக்கத்தை கேட்க">🔊 கேட்க</button>
     </div>
@@ -91,94 +87,31 @@
       <li><a href="https://www.instagram.com" target="_blank">Instagram <img src="instagram_icon.png" alt="Instagram icon" /></a></li>
     </ul>
     <p>&copy; 2025 Navam Academy</p>
-    <p id="footer-quote">Vision Lost is not a Life Lost</p>
+    <p>Vision Lost is not a Life Lost</p>
     <a href="#top">Scroll to Top</a>
   </footer>
-
 <script>
   let voices = [];
-
-  const translations = {
-    ta: {
-      "site-name": "நவம் அறிவுக்கூடம்",
-      "tagline": "மனிதனது இருப்பை விட அவனது செயற்பாடே வரலாற்றுச் சக்கரத்தை சுழற்ற உதவுகிறது!",
-      "welcome-heading": "அன்புடன் நவம் அறிவுக்கூடத்தின் முகப்பு பகுதிக்கு வரவேற்கின்றோம்",
-      "block1-title": "அறிமுகம்",
-      "block1-text": "'நவம்' என்ற ஆளுமை தனது அங்கம் ஒன்றை இழந்த போதிலும் இறுதி வரை தளராது...",
-      "block2-title": "நோக்கம்",
-      "block2-text": "பொது அறிவு, ஆங்கிலம் மற்றும் தகவல் தொழினுட்பம் சார்ந்த விடயங்கள்...",
-      "nav-home": "முகப்பு | Home",
-      "nav-gk": "தகவல் களஞ்சியம் | Information Store",
-      "nav-eng": "ஆங்கிலம் | English",
-      "nav-read": "வாசிப்பு | Reading",
-      "nav-tech": "தொழினுட்ப செய்திகள் | Technology News",
-      "nav-contact": "தொடர்பு கொள்க | Contact Us",
-      "footer-quote": "கண்ணிழப்பு வாழ்க்கை இழப்பல்ல"
-    },
-    en: {
-      "site-name": "Navam Knowledge Hub",
-      "tagline": "It is man's action, not his existence, that turns the wheel of history!",
-      "welcome-heading": "Welcome to Navam Knowledge Hub",
-      "block1-title": "Introduction",
-      "block1-text": "'Navam' was a person who, despite losing a limb, remained steadfast...",
-      "block2-title": "Purpose",
-      "block2-text": "This website was created to enhance general knowledge, English, IT...",
-      "nav-home": "Home",
-      "nav-gk": "Information Store",
-      "nav-eng": "English",
-      "nav-read": "Reading",
-      "nav-tech": "Technology News",
-      "nav-contact": "Contact Us",
-      "footer-quote": "Vision Lost is not a Life Lost"
-    },
-    si: {
-      "site-name": "නවම් දැනුම් මධ්‍යස්ථානය",
-      "tagline": "ඇත්තටම ඉතිහාසය හැරවන්නේ මිනිසාගේ ක්‍රියාවයි!",
-      "welcome-heading": "නවම් දැනුම් මධ්‍යස්ථානයට සාදරයෙන් පිළිගනිමු",
-      "block1-title": "හැඳින්වීම",
-      "block1-text": "'නවම්' යන පුද්ගලයා ඔහුගේ අංගයක් නැතිවියද...",
-      "block2-title": "අරමුණ",
-      "block2-text": "සාමාන්‍ය දැනුම, ඉංග්‍රීසි සහ තොරතුරු තාක්ෂණය...",
-      "nav-home": "මුල් පිටුව | Home",
-      "nav-gk": "තොරතුරු ගබඩාව | Information Store",
-      "nav-eng": "ඉංග්‍රීසි | English",
-      "nav-read": "පාඨනය | Reading",
-      "nav-tech": "තාක්ෂණ ප්‍රවෘත්ති | Technology News",
-      "nav-contact": "අප අමතන්න | Contact Us",
-      "footer-quote": "දෘශ්‍යතාවය නැතිවීම ජීවිතය නැතිවීමක් නොවේ"
-    }
-  };
 
   function loadVoices() {
     voices = speechSynthesis.getVoices();
   }
 
-  speechSynthesis.onvoiceschanged = loadVoices;
+  speechSynthesis.onvoiceschanged = () => {
+    loadVoices();
+  };
 
   function speakText(text) {
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = document.documentElement.lang === 'en' ? 'en-US' : document.documentElement.lang === 'si' ? 'si-LK' : 'ta-IN';
+    utterance.lang = 'ta-IN';
 
-    const voice = voices.find(v => v.lang === utterance.lang);
-    if (voice) utterance.voice = voice;
+    const tamilVoice = voices.find(voice => voice.lang === 'ta-IN');
+    if (tamilVoice) {
+      utterance.voice = tamilVoice;
+    }
 
     speechSynthesis.cancel();
     speechSynthesis.speak(utterance);
-  }
-
-  function speak(id) {
-    const text = document.getElementById(id).innerText;
-    speakText(text);
-  }
-
-  function changeLanguage(lang) {
-    document.documentElement.lang = lang;
-    const t = translations[lang];
-    for (const key in t) {
-      const el = document.getElementById(key);
-      if (el) el.innerText = t[key];
-    }
-    updateTimeAndAnnounce(); // refresh greeting box
   }
 
   function getTamilGreeting(hours) {
@@ -189,31 +122,50 @@
 
   function updateTimeAndAnnounce(announce = false) {
     const now = new Date();
+
     const hours = now.getHours();
+    const minutes = now.getMinutes();
+
     const greeting = getTamilGreeting(hours);
+
     const dateString = now.toLocaleDateString('ta-IN', {
       weekday: 'long',
       year: 'numeric',
       month: 'long',
       day: 'numeric'
     });
+
     const timeString = now.toLocaleTimeString('ta-IN', {
       hour: '2-digit',
       minute: '2-digit'
     });
+
     const message = `${greeting}, இன்று ${dateString}, தற்போது ${timeString}`;
-    document.getElementById('greeting-box').innerText = message;
-    if (announce) speakText(message);
+
+    // Display only
+    const box = document.getElementById('greeting-box');
+    box.innerText = message;
+
+    // Announce if it's a new hour
+    if (announce) {
+      speakText(message);
+    }
   }
 
   window.onload = () => {
     loadVoices();
-    updateTimeAndAnnounce();
+    updateTimeAndAnnounce(); // Just display on load, no speech
+
     setInterval(() => {
       const now = new Date();
-      updateTimeAndAnnounce(now.getMinutes() === 0);
+      const minutes = now.getMinutes();
+      updateTimeAndAnnounce(minutes === 0); // Speak only when minutes === 00 (new hour)
     }, 60000);
   };
+function speak(id) {
+  const text = document.getElementById(id).innerText;
+  speakText(text);
+  }
 </script>
 </body>
 </html>
